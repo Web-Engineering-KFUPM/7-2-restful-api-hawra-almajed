@@ -50,3 +50,19 @@ export async function apiDeleteSong(id) {
   }
 }
 
+const API = import.meta.env.VITE_API_URL || "http://localhost:5174";
+
+const handle = async (res) => {
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || "Request failed");
+  }
+  if (res.status === 204) return null;
+  return res.json();
+};
+
+export const apiGetSongs  = ()         => fetch(`${API}/api/songs`).then(handle);
+export const apiGetSong   = (id)       => fetch(`${API}/api/songs/${id}`).then(handle);
+export const apiCreateSong = (body)    => fetch(`${API}/api/songs`, { method: "POST",   headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then(handle);
+export const apiUpdateSong = (id, body)=> fetch(`${API}/api/songs/${id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then(handle);
+export const apiDeleteSong = (id)      => fetch(`${API}/api/songs/${id}`, { method: "DELETE" }).then(handle);
