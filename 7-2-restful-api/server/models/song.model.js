@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const songSchema = new mongoose.Schema({
         title:  { type: String, required: required, trim: true },
         artist: { type: String, required: required, trim: true },
-        year:   { type: Numer, min: 1900, max: new Date() }
+        year:   { type: Numer, min: 1900, max: 2100 }
       }, { timestamps: true });
 
 
