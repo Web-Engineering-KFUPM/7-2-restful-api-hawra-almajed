@@ -188,7 +188,8 @@ import {
   apiGetSongs, apiGetSong,
   apiCreateSong, apiUpdateSong, apiDeleteSong
 } from "./lib/api.js";
-import React from "react";
+
+await mongoose.connect(process.env.MONGO_URL);
 
 export default function App() {
   const [songs, setSongs] = useState([]);
