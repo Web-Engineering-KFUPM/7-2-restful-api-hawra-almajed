@@ -189,7 +189,7 @@ import {
   apiCreateSong, apiUpdateSong, apiDeleteSong
 } from "./lib/api.js";
 
-await mongoose.connect(process.env.MONGO_URL);
+// await mongoose.connect(process.env.MONGO_URL);
 
 export default function App() {
   const [songs, setSongs] = useState([]);
